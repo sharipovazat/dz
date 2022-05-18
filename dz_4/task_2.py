@@ -7,6 +7,7 @@ def currency_rates(char_code):
     for line in responce.split('</Value>'):
         parts_of_line = line.split('</CharCode')[0][-3:]
         currency_dict[parts_of_line] = line[-7:] if parts_of_line.isalpha() else print()
+
     char_code = char_code.upper()
     if currency_dict.setdefault(char_code) == None:
         print('Неверный код валюты')
