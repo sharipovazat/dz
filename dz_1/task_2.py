@@ -10,7 +10,7 @@ for number in range(1, 1001, 2):
         number_in_cube = number_in_cube // 10
     if number_cube_summ % 7 == 0:
         numbers.append(number**3)
-        numbers_summ += number**3 #новая ветвь для суммы
+        numbers_summ += number**3                               # новая ветвь для суммы
 print(numbers_summ)
 #print(sum(numbers))
 
