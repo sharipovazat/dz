@@ -1,13 +1,61 @@
-#a
-start_list = ['в', '5', 'часов', '17', 'минут', 'температура', 'вохдуха', 'была', '+5', 'градусов']
-finish_list = []
+# Дано
+start_list = ['в', '5', 'часов', '-17', 'минут', 'температура', 'воздуха', 'была', '+5', 'градусов']
 
-for element in start_list:
-    if element.isdigit():
-        finish_list.append(f'"{int(element):02d}"')
-    elif element[1:].isdigit():
-        finish_list.append(f'"{element[0]}{int(element):02d}"')
+# Нужно
+# ['в', '"05"', 'часов', '"-17"', 'минут', 'температура', 'воздуха', 'была', '"+05"', 'градусов']
+
+
+# С созданием нового списка
+final_list = []
+for i in start_list:
+    if i[0] in ['+', '-']:                              # if i[0] == '-' or i[0] == '+':
+        final_list.append(f'"{i[0]}{int(i[1:]):02d}"')  # '"', f'{i[0]}{int(i[1:]):02d}', '"'
     else:
-        finish_list.append(element)
+        if i.isdigit():                                 # i.isnumeric():      Метод isnumeric() возвращает True, если все символы в строке являются числовыми.
+            final_list.append(f'"{int(i):02d}"')
+        else:
+            final_list.append(i)
+print(final_list)                                       # ['в', '"05"', 'часов', '"-17"', 'минут', 'температура', 'воздуха', 'была', '"+05"', 'градусов']
 
-print(' '.join(finish_list))
+
+# С объединением нескольких списков (вместо .append() каждый раз лишь 1 раз .extend())
+extended_list = []
+for i in start_list:
+    if i[0] in ['+', '-']:
+        i = [f'"{i[0]}{int(i[1:]):02d}"']       # 1 список
+    else:
+        if i.isdigit():
+            i = [f'"{int(i):02d}"']             # 2 список
+        else:
+            i = [i]                             # 3 список
+    extended_list.extend(i)
+print(extended_list)                                    # ['в', '"05"', 'часов', '"-17"', 'минут', 'температура', 'воздуха', 'была', '"+05"', 'градусов']
+
+
+
+
+# Дано
+start_list = ['в', '5', 'часов', '-17', 'минут', 'температура', 'воздуха', 'была', '+5', 'градусов']
+
+
+# Нужно
+# ['в', '"', '05', '"', 'часов', '"', '17', '"', 'минут', 'температура', 'воздуха', 'была', '"', '+05', '"', 'градусов']
+
+# Добавляем кавычки в самом списке, без создания нового
+i = 0
+while i < len(start_list):
+    element = start_list[i]                                         # элемент равен объекту по индексу в списке
+    if element[0] in ['+', '-']:                                    # если первый символ у элемента + или -, то:
+        start_list[i] = f'{element[0]}{int(element[1:]):02d}'       # элемент по индексу в списке = + или - и сам элемент без первого символа с двумя целыми числами
+        start_list.insert(i+1, '"')
+        start_list.insert(i, '"')
+        i += 1                                                      # сдвиг из-за кавычки
+    else:
+        if element.isnumeric():
+            start_list[i] = f'{int(element):02d}'
+            start_list.insert(i+1, '"')
+            start_list.insert(i, '"')
+            i += 1                                                  # сдвиг из-за кавычки
+    i += 1                                                          # сдвиг по циклу
+
+print(start_list)

@@ -5,26 +5,26 @@ a_dict = {
            "А": ["Анна Савельева"]}
 }
 
-# sur: {'И': ['Иван Сергеев', 'Инна Серова', 'Илья Иванов'], 'П': ['Петр Алексеев'], 'А': ['Анна Савельева']}
+
 def thesaurus(*args):
+    dict_main = {}
     dict_names = {}
     dict_surnames = {}
     for i in args:
-        name, surname = i.split()
+        name = i.split()[0]
         first_letter_name = name[0]
         dict_names[first_letter_name] = dict_names.get(first_letter_name, []) + [i]
-    for k, v in dict_names.items():
-        for i in v:
-            name, surname = i.split()
-            first_letter_surname = surname[0]
-            dict_surnames[first_letter_surname] = dict_surnames.get(first_letter_surname, [])   # {'С': [], 'И': [], 'А': []}
-        dict_surnames['C'] = dict_surnames.get('C', []) + [k,v]
+    print('словарь имён', dict_names)
+
+    for value in dict_names.values():           # ['Иван Сергеев', 'Инна Серова', 'Илья Иванов']
+        for i in value:                         # Иван Сергеев
+            surname = i.split()[-1]             # Сергеев
+            first_letter_surname = surname[0]   # C
+
+            dict_surnames[first_letter_surname] = dict_surnames.get(first_letter_surname, []) + [dict_names[]]       # c : Иван Сергеев
+
     print(dict_surnames)
-        #dict_surnames[first_letter_surname] =
-    print('sur:', dict_names)
 thesaurus('Иван Сергеев', 'Инна Серова', 'Петр Алексеев', 'Илья Иванов', 'Анна Савельева')
-
-
 
 """
 
