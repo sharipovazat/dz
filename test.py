@@ -1,81 +1,41 @@
-a_dict = {
-     "А": {"П": ["Петр Алексеев"]},
-     "И": {"И": ["Илья Иванов"]},
-     "С": {"И": ["Иван Сергеев", "Инна Серова"],
-           "А": ["Анна Савельева"]}
-}
+# Написать функцию thesaurus_adv(), принимающую в качестве аргументов строки в формате «Имя Фамилия» 
+# и возвращающую словарь, в котором ключи — первые буквы фамилий, а значения — словари, 
+# реализованные по схеме предыдущего задания и содержащие записи, 
+# в которых фамилия начинается с соответствующей буквы. Например:
+# >>> thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева")
+# {
+#     "А": {
+#         "П": ["Петр Алексеев"]
+#     },
+#     "И": {
+#         "И": ["Илья Иванов"]
+#     },
+#     "С": {
+#         "И": ["Иван Сергеев", "Инна Серова"], 
+#         "А": ["Анна Савельева"]
+#     }
+# }
 
 
-def thesaurus(*args):
+def thesaurus_adv(*args):
     dict_main = {}
-    dict_names = {}
-    dict_surnames = {}
-    for i in args:
-        name = i.split()[0]
-        first_letter_name = name[0]
-        dict_names[first_letter_name] = dict_names.get(first_letter_name, []) + [i]
-    print('словарь имён', dict_names)
-
-    for value in dict_names.values():           # ['Иван Сергеев', 'Инна Серова', 'Илья Иванов']
-        for i in value:                         # Иван Сергеев
-            surname = i.split()[-1]             # Сергеев
-            first_letter_surname = surname[0]   # C
-
-            dict_surnames[first_letter_surname] = dict_surnames.get(first_letter_surname, []) + [dict_names[]]       # c : Иван Сергеев
-
-    print(dict_surnames)
-thesaurus('Иван Сергеев', 'Инна Серова', 'Петр Алексеев', 'Илья Иванов', 'Анна Савельева')
-
-"""
-
-
-def thesaurus_2(*args):
-    surnames_dict = {}
-    names_dict = {}
-    for name_surname in args:
-        name, surname = name_surname.split()
-        first_letter_name = name[0]
-        names_dict[first_letter_name] = names_dict.get(first_letter_name, []) + [name_surname]
-    for k, v in names_dict.items():                     # 'И': ['Иван Игнеев', 'Илья Ивлев']
-        for i in v:                                     # Иван Сергеев
-            name, surname = i.split()                   # name = Иван      surname = Игнеев
-            first_letter_surname = surname[0]           # first_letter_surname = И
-            surnames_dict[first_letter_surname] = surnames_dict.get(first_letter_surname, []) + [k,v]   # 'И' = 'И': ['Иван Игнеев', 'Илья Ивлев']
+    dict_surname = {}
+    for i in args:                                  # Иван Сергеев
+        surname = i.split(' ')[-1]                  # Сергеев
+        surname_first_letter = surname[0]           # С
+        dict_surname[surname_first_letter] = dict_surname.get(surname_first_letter, []) + [i]   # {'С': ['Иван Сергеев', 'Инна Серова', 'Анна Савельева'], 'А': ['Петр Алексеев'], 'И': ['Илья Иванов']}
+        for key, value in dict_surname.items():       # 'С'    ['Иван Сергеев', 'Инна Серова', 'Анна Савельева']
+            dict_name = {}
+            for i in value:                                 # Иван Сергеев
+                name = i.split(' ')[0]                      # Иван
+                name_first_letter = name[0]                 # И
+                name_dictionary[name_first_letter] = name_dictionary.get(name_first_letter, []) + [i]   # {'И': ['Иван Сергеев', 'Инна Серова'], 'А': ['Анна Савельева'], 'П': ['Петр Алексеев'], 'И': ['Илья Иванов']}
+            dict_main[key] = dict_main.get()
 
 
 
 
-    print('surnames_dict:', surnames_dict)
-    return names_dict
+    return surname_dictionary
 
 
-print(thesaurus_2('Иван Сергеев', 'Инна Серова', 'Петр Алексеев', 'Илья Иванов', 'Анна Савельева'))
-"""
-"""
-listok = ['Axxxx Pxxxx', 'Txxxx Pxxxx']
-dict_p = {}
-
-dict_p = dict_p['a'] = 'Axxxx Pxxxx'
-dict_p = dict_p['t'] = 'Txxxx Pxxxx'
-
-all_dict = {
-    'A': ['Axxxx Pxxxx'],
-    'T': ['Txxxx Pxxxx'],
-    'B': ['Bxxxx Vxxxx'],
-    'C': ['Cxxxx Rxxxx', 'Cxxxx Kxxxx']
-}
-
-P = {
-    'A': ['Axxxx Pxxxx'],
-    'T': ['Txxxx Pxxxx']
-}
-
-V = {
-    'B': ['Bxxxx Vxxxx']
-}
-
-R = {
-    'C': ['Cxxxx Rxxxx']
-}
-"""
-
+print(thesaurus_adv("Иван Сергеев", "Инна Серова", "Петр Алексеев", "Илья Иванов", "Анна Савельева"))

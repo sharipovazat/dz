@@ -1,44 +1,42 @@
 coast = [43, 54.5, 342.54, 985, 985.05, 3223, 234, 433.4, 23, 202.3, 23, 43.64, 43.4, 2232, 1, 3.4]
+print(id(coast))                                                    # 140461806187008
 
-#a
-for element in coast:
-    cops = element * 100 % 100
-    print(f'{int(element)} руб {int(cops):02d} коп')
-
-print(id(coast))
-
-
-
-#b
+# оформить рубли и копейки красиво
+for i in coast:
+    rubs = i * 100 // 100
+    cops = i * 100 % 100
+    print(f'{int(rubs)} руб {int(cops):02d} коп', end='/')          # 43 руб 00 коп/54 руб 50 коп/342 руб 54 коп/985 руб 00 коп/985 руб 05 коп/3223 руб 00 коп...
 print()
-print('ЗАДАНИЕ В')
-print()
+print(id(coast))                                                    # 140461806187008
 
+
+
+# отсортировать по возрастанию in place
 coast.sort()
 for element in coast:
     cops = element * 100 % 100
-    print(f'{int(element)} руб {int(cops):02d} коп')
+    print(f'{int(element)} руб {int(cops):02d} коп', end=' / ')     # 1 руб 00 коп / 3 руб 40 коп / 23 руб 00 коп / 23 руб 00 коп / 43 руб 00 коп / 43 руб 40 коп...
 
-print(id(coast))
-
-#C
 print()
-print('ЗАДАНИЕ C')
-print()
+print(id(coast))                                                    # 140461806187008
 
+# отсортировать с созданием нового списка
 new_coast = sorted(coast, reverse=True)
 for element in new_coast:
     cops = element * 100 % 100
-    print(f'{int(element)} руб {int(cops):02d} коп')
+    print(f'{int(element)} руб {int(cops):02d} коп', end=' / ')     # 3223 руб 00 коп / 2232 руб 00 коп / 985 руб 05 коп / 985 руб 00 коп / 433 руб 40 коп...
 
-print(id(new_coast), id(coast))
-
-#D
 print()
-print('ЗАДАНИЕ D')
-print()
+print(id(new_coast), id(coast))                                     # 140183976229760 140461806187008
 
+
+# реверснуть СРЕЗОМ
+print('fdsdfs')
+print(coast)                                                        # [1, 3.4, 23, 23, 43, 43.4, 43.64, 54.5, 202.3, 234, 342.54, 433.4, 985, 985.05, 2232, 3223]
+print(coast[::-1])                                                  # [3223, 2232, 985.05, 985, 433.4, 342.54, 234, 202.3, 54.5, 43.64, 43.4, 43, 23, 23, 3.4, 1]
+
+# отсортировать 5 наиболее дорогих товаров
 coast.sort()
 for element in coast[-5:]:
     cops = element * 100 % 100
-    print(f'{int(element)} руб {int(cops):02d} коп')
+    print(f'{int(element)} руб {int(cops):02d} коп', end=' / ')     # 433 руб 40 коп / 985 руб 00 коп / 985 руб 05 коп / 2232 руб 00 коп / 3223 руб 00 коп /

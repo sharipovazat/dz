@@ -1,5 +1,9 @@
 #b (in place)
+# Дано
 start_list = ['в', '5', 'часов', '17', 'минут', 'температура', 'вохдуха', 'была', '+5', 'градусов']
+
+# Нужно
+# в "05" часов "17" минут температура вохдуха была "+05" градусов
 
 for index, element in enumerate(start_list):
     if element.isdigit():
@@ -7,4 +11,30 @@ for index, element in enumerate(start_list):
     elif element[1:].isdigit():
         start_list[index] = f'"{element[0]}{int(element):02d}"'
 
-print(' '.join(start_list))
+print(' '.join(start_list))                                 # в "05" часов "17" минут температура вохдуха была "+05" градусов
+
+
+# Дано
+start_list = ['в', '5', 'часов', '-17', 'минут', 'температура', 'воздуха', 'была', '+5', 'градусов']
+
+
+# Нужно
+# ['в', '"', '05', '"', 'часов', '"', '17', '"', 'минут', 'температура', 'воздуха', 'была', '"', '+05', '"', 'градусов']
+
+i = 0
+while i < len(start_list):
+    element = start_list[i]                                         # элемент равен объекту по индексу в списке
+    if element[0] in ['+', '-']:                                    # если первый символ у элемента + или -, то:
+        start_list[i] = f'{element[0]}{int(element[1:]):02d}'       # элемент по индексу в списке = + или - и сам элемент без первого символа с двумя целыми числами
+        start_list.insert(i+1, '"')
+        start_list.insert(i, '"')
+        i += 1                                                      # сдвиг из-за кавычки
+    else:
+        if element.isnumeric():
+            start_list[i] = f'{int(element):02d}'
+            start_list.insert(i+1, '"')
+            start_list.insert(i, '"')
+            i += 1                                                  # сдвиг из-за кавычки
+    i += 1                                                          # сдвиг по циклу
+
+print(start_list)                                                   # ['в', '"', '05', '"', 'часов', '"', '-17', '"', 'минут', 'температура', 'воздуха', 'была', '"', '+05', '"', 'градусов']
