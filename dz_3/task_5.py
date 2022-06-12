@@ -6,6 +6,14 @@
 
 from random import choice, randrange, randint
 
+a_list = ['Ноль', 'Один', 'Два', 'Три']
+print(choice(a_list))               # Два
+print(randint(0, 3))                # 0, 1, 2, 3
+print(randrange(0, 3))              # 0, 1, 2        (не включая последнее число)
+print(randrange(0, 10, 3))          # 0, 3, 6, 9
+
+
+
 # шутки повторяются, количество предложений 1
 def get_jokes_1():
     nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
