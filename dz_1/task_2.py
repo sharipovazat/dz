@@ -1,31 +1,45 @@
-numbers = []
+# Создать список, состоящий из кубов нечётных чисел от 1 до 1000 (куб X - третья степень числа X):
 
-#a
-numbers_summ = 0
+
+numbers = []                                                    # создаём пустой список
+
+# a. Вычислить сумму тех чисел из этого списка, сумма цифр которых делится нацело на 7.
+# Например, число «19 ^ 3 = 6859» будем включать в сумму, так как 6 + 8 +5+9=28– делится нацело на 7.
+# Внимание: использовать только арифметические операции!
+
+numbers_summ = 0                                                # присваиваем переменной значение 0
+for number in range(1, 1001, 2):                                # проходимся в промежутке от 1 до 1001 не включительно с шагом 2, получается отбор только нечетных чисел
+    number_in_cube = number**3                                  # каждое нечетное число возводим в куб и присваеваем переменной
+    number_cube_summ = 0                                        # в переменную присваиваем ноль
+    while number_in_cube > 0:                                   # создаём цикл, пока переменная с числом в кубе больше нуля делаем следующее:
+        number_cube_summ += number_in_cube % 10                 # к нулю прибавляем остаток от деления на 10 числа в кубе
+        number_in_cube = number_in_cube // 10                   # то же число теперь перезаписываем, но без последней цифры. И так цикл продолжается, пока от числа ничего не останется
+    if number_cube_summ % 7 == 0:                               # теперь эту же получившуюся сумму цифр числа в кубе (323: 3+2+3=9) делим на 7, и если остаток равен нулю,
+        numbers.append(number**3)                               # то добавляем нечетное число возведя его в куб в самый первый список
+        numbers_summ += number**3                               # сразу добавляем в верхнюю переменную где ноль это число в квадрате
+print(numbers_summ)                                             # 17485588610
+#print(sum(numbers))
+
+
+# b. К каждому элементу списка добавить 17 и заново вычислить сумму тех чисел из этого списка,
+# сумма цифр которых делится нацело на 7.
+
+# c. * Решить задачу под пунктом b, не создавая новый список.
+
+new_numbers = []
+new_numbers_summ = 0
+
 for number in range(1, 1001, 2):
-    number_in_cube = number**3
+    number_in_cube = number ** 3 + 17
     number_cube_summ = 0
     while number_in_cube > 0:
         number_cube_summ += number_in_cube % 10
         number_in_cube = number_in_cube // 10
     if number_cube_summ % 7 == 0:
-        numbers.append(number**3)
-        numbers_summ += number**3                               # новая ветвь для суммы
-print(numbers_summ)
-#print(sum(numbers))
-
-
-#b
-new_numbers = []
-new_numbers_summ = 0
-for number in range(1, 1001, 2):
-    number_in_cube = number ** 3 + 17
-    number_cube_summ = 0
-    while number_in_cube >= 1:
-        number_cube_summ += number_in_cube % 10
-        number_in_cube = number_in_cube // 10
-    if number_cube_summ % 7 == 0:
         new_numbers.append(number ** 3)
         new_numbers_summ += number ** 3
+
 #print(sum(new_numbers))
-print(new_numbers_summ)
+print(new_numbers_summ)                                 # 15392908808
+
+
