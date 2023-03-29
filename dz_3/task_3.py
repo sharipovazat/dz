@@ -19,9 +19,9 @@ print(thesaurus())
 # аргумент *args
 def thesaurus_args(*args):
     dict_names = {}
-    for i in args:
-        first_letter = i[0]
-        dict_names[first_letter] = dict_names.get(first_letter, []) + [i]
+    for name in args:
+        first_letter = name[0]
+        dict_names[first_letter] = dict_names.get(first_letter, []) + [name]
     return dict_names
 print(thesaurus_args('Иван', 'Мария', 'Антон', 'Илья'))
 

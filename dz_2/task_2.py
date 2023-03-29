@@ -28,13 +28,14 @@ print(new_string_2)                                     # в "05" часов "17
 extended_list = []
 for i in start_list:
     if i[0] in ['+', '-']:
-        i = [f'"{i[0]}{int(i[1:]):02d}"']       # 1 список
+        i = f'"{i[0]}{int(i[1:]):02d}"'
     else:
         if i.isdigit():
-            i = [f'"{int(i):02d}"']             # 2 список
+            i = f'"{int(i):02d}"'
         else:
-            i = [i]                             # 3 список
-    extended_list.extend(i)
+            i = i
+    print(i)
+    extended_list.append(i)
 print(extended_list)                                    # ['в', '"05"', 'часов', '"-17"', 'минут', 'температура', 'воздуха', 'была', '"+05"', 'градусов']
 
 

@@ -25,6 +25,7 @@ def num_translate_adv():
     else:
         return dictionary.get(numbers)
 
+
 print(num_translate_adv())
 
 
