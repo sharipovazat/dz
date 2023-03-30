@@ -22,6 +22,7 @@ def get_jokes_1():
 
     print(f'{choice(nouns).title()} {choice(adverbs)} {choice(adjectives)}')            # Лес завтра яркий
 
+
 get_jokes_1()
 
 
