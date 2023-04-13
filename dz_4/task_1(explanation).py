@@ -7,7 +7,7 @@ from decimal import Decimal    # из модуля округления decimal 
 #---------------------------------------------------------------------------------------------------------------------
 link = 'http://www.cbr.ru/scripts/XML_daily.asp'                                   # берём ссылку
 responce = get(link).text                                                          # для удобства присваеваем в переменную с функцией get и методом text для получения Инфы с сервера и дальше начинаем её уже обрабатывать
-#print(requests.get(link).text)
+#print(requests.get(link).text)                                                    # <?xml version="1.0" encoding="windows-1251"?><ValCurs Date="08.04.2023" name=
 #encodings = utils.get_encoding_from_headers(responce.headers)
 #content = responce.content.decode(encoding=encodings)
 

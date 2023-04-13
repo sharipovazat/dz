@@ -3,6 +3,7 @@ from decimal import Decimal
 
 def currency_rates(char_code):
     responce = get('http://www.cbr.ru/scripts/XML_daily.asp').text
+    print(responce)
     currency_dict = {}
     for line in responce.split('</Value>'):
         parts_of_line = line.split('</CharCode')[0][-3:]
