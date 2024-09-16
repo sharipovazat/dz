@@ -1,17 +1,18 @@
-# Реализовать функцию get_jokes(), возвращающую n шуток,
-# сформированных из трех случайных слов, взятых из трёх списков (по одному из каждого):
-# nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
-# adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
-# adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+from requests import get
+from decimal import Decimal
 
-from random import randint, choice
+def currency_rates(char_code):
+    zapros = get('http://www.cbr.ru/scripts/XML_daily.asp').text
+    print(zapros)
+    kurs_valut_slovar = {}
+    for line in zapros.split('</Value>'):
+        parts_of_line = line.split('</CharCode')[0][-3:]
+        kurs_valut_slovar [parts_of_line] = line[-7:] if parts_of_line.isalpha() else print()
+    char_code = char_code.upper()
+    if kurs_valut_slovar .setdefault(char_code) == None:
+        print('Неверный код валюты')
+    else:
+        price = Decimal(kurs_valut_slovar[char_code].replace(',', '.')).quantize(Decimal('0.01'))
+        print(f'{char_code} = {price} руб.')
 
-print(randint(0, 3))
-
-a_list = ['один', 'два', 'три']
-print(len(a_list))
-rnd_nouns = randint(0, len(a_list)-1)
-a_list.pop(rnd_nouns)
-print(rnd_nouns)
-print(a_list)
-
+currency_rates(input('Введите код валюты: '))
